@@ -96,7 +96,7 @@ Please note that your `translates :title, :body` declaration must be called befo
 
 By default, Traco will fall back to the default locale if there is no translation in the current locale.
 
-You can specify e.g. `translates :title, fallback: false` to never fall back and instead return `nil`.
+You can specify e.g. `translates :title, fallback: false` to never fall back and instead return `nil` or the last-seen falsy value (e.g. {} for a JSON column with that default).
 
 You can specify e.g. `translates :title, fallback: :any` to fall back first to the default locale, then to any other locale.
 

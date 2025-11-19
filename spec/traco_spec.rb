@@ -381,6 +381,14 @@ RSpec.describe Post, "JSON columns like #data" do
 
     expect(post.data).to eq({})
   end
+
+  it "does not nilify empty hashes with fallback: false" do
+    I18n.locale = :sv
+
+    post = Post.new(data_sv: {})
+
+    expect(post.data(fallback: false)).to eq({})
+  end
 end
 
 RSpec.describe Post, ".human_attribute_name" do
