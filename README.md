@@ -42,7 +42,7 @@ end
 
 You can still use your accessors like `title_sv` and `title_sv=` in forms, validations and other code, but you also get:
 
-`#title`: Shows the title in the current locale. If blank, [falls back](#fallbacks) to default locale. Otherwise nil.
+`#title`: Shows the title in the current locale. If blank, [falls back](#fallbacks) to default locale. Otherwise nil for strings, or the last-seen falsy value (e.g. {} for a JSON column with that default).
 
 `#title(locale: :en)`: Shows the English title, without falling back. (To fall back, do `I18n.with_locale(:en) { post.title }` instead.)
 
