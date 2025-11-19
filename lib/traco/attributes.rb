@@ -28,12 +28,14 @@ module Traco
           return send(Traco.column(:#{attribute}, locale)) if locale
 
           columns_to_try = self.class._locale_columns_for_attribute(:#{attribute}, fallback: fallback)
+          value = nil
           columns_to_try.each do |column|
             value = send(column)
             return value if value.present?
           end
 
-          nil
+          # With no present value in any locale, return nil for strings, or the last seen blank value (e.g. {} for JSON columns with that default).
+          value.is_a?(String) ? nil : value
         end
       EOM
     end

@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table :posts, force: true do |t|
     t.string :title_sv, :title_en, :title_pt_br, :title_de
     t.string :body_sv, :body_en, :body_pt_br, :body_de
+    t.json :data_sv, :data_en, :data_pt_br, :data_de, default: {}
   end
 end
 

@@ -1,3 +1,3 @@
 module Traco
-  VERSION = "5.3.3"
+  VERSION = "6.0.0"
 end

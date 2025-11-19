@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.0
+
+* Return e.g. `{}` rather than `nil` for falsey values that are not the empty string.
+
 ## 5.3.3
 
 * Force MFA for privileged Rubygems actions.

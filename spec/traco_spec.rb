@@ -346,6 +346,43 @@ RSpec.describe Post, "#title?" do
   end
 end
 
+RSpec.describe Post, "JSON columns like #data" do
+  before do
+    Post.translates :data
+  end
+
+  it "can be localized" do
+    post = Post.new(
+      data_sv: { language: "Swedish" },
+      data_en: { language: "English" },
+    )
+
+    expect(post.data(locale: :sv)).to eq({ "language" => "Swedish" })
+    expect(post.data(locale: :en)).to eq({ "language" => "English" })
+    expect(post.data(locale: :de)).to eq({})
+  end
+
+  it "falls back from an empty hash" do
+    I18n.locale = :sv
+    I18n.default_locale = :en
+
+    post = Post.new(
+      data_sv: {},
+      data_en: { language: "English" },
+    )
+
+    expect(post.data).to eq({ "language" => "English" })
+  end
+
+  it "does not nilify empty hashes" do
+    I18n.locale = :sv
+
+    post = Post.new(data_sv: {})
+
+    expect(post.data).to eq({})
+  end
+end
+
 RSpec.describe Post, ".human_attribute_name" do
   before do
     Post.translates :title
