@@ -18,7 +18,7 @@ RSpec.describe Traco, ".split_localized_column" do
     expect(subject.split_localized_column("title")).to be_nil
   end
 
-  it "returns nil if column is not localized but with undercores" do
+  it "returns nil if column is not localized but with underscores" do
     expect(subject.split_localized_column("long_title")).to be_nil
   end
 end
